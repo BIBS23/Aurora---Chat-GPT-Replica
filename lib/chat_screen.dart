@@ -18,13 +18,13 @@ class _ChatBotState extends State<ChatBot> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Consumer<MyResponse>(builder: (context, myRespo, child) {
-      final h = myRespo.myrespo;
+      final h = myRespo.myResp;
       return Column(
         children: [
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
-              itemCount: myRespo.myrespo.length,
+              itemCount: myRespo.myResp.length,
               itemBuilder: (context, index) {
                 return ChatMessage(text: h[index]);
               },
@@ -47,11 +47,8 @@ class _ChatBotState extends State<ChatBot> {
                       decoration: InputDecoration(
                           suffixIcon: IconButton(
                               splashRadius: 0.3,
-                              onPressed: () async {
-                                await Provider.of<MyResponse>(context,
-                                        listen: false)
-                                    .getResponse(myqn.text)
-                                    .then((value) => myqn.clear());
+                              onPressed: () {
+                             
                                 setState(() {
                                   FocusScope.of(context).unfocus();
                                   _scrollController.animateTo(
@@ -61,9 +58,11 @@ class _ChatBotState extends State<ChatBot> {
                                           const Duration(milliseconds: 200),
                                       curve: Curves.easeInOut);
                                 });
+                                myRespo.getResponse(myqn.text);
+                                myqn.clear();
                               },
                               icon: const Icon(Icons.send)),
-                          hintText: "Type your message...",
+                          hintText: "Type your anything...",
                           border: const GradientOutlineInputBorder(
                               gradient: LinearGradient(colors: [
                             Colors.blue,

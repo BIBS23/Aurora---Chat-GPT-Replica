@@ -4,7 +4,7 @@ import 'package:simple_gradient_text/simple_gradient_text.dart';
 class ChatMessage extends StatelessWidget {
   final text;
 
-  ChatMessage({super.key, required this.text});
+  const ChatMessage({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ChatMessage extends StatelessWidget {
             borderRadius: BorderRadius.circular(8)),
             child:
          Padding(
-          padding: const EdgeInsets.only(top:8,bottom: 25,left: 20,right: 20),
+          padding: const EdgeInsets.only(top:10,bottom: 10,left: 20,right: 20),
           child:  GradientText(text,textAlign: TextAlign.justify, style: const TextStyle(fontSize: 20),colors: const [Colors.blue, Colors.red]),
         ),
       ),
